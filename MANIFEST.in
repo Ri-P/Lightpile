@@ -1,0 +1,7 @@
+include README
+include CHANGES
+include LICENSE
+include AGPLv3
+
+recursive-include lightpile/test *.py
+include lightpile/test/data/green.pl
