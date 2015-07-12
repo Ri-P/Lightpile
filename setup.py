@@ -17,15 +17,14 @@ else:
 
 config = {
     'name': 'Lightpile',
-    'description': 'An optical thin film solver.',
     'author': 'Richard Pfeifer',
     'author_email': 'rip@wgd2.de',
     'url': "https://github.com/Ri-P/lightpile",
     'description': (
-        "A tool to simulate dipole emitters in planar thin film stacks."),
+        "A tool to simulate dipole emitters in thin film stacks."),
     'license': 'GNU Affero General Public License v3 or later (AGPLv3+)',
     'long_description':
-        "Lightpile is a tool to simulate dipole emitters in planar thin film"
+        "Lightpile is a tool to simulate dipole emitters in thin film"
         "stacks. This is a physics problem involving eletromagnetism and a"
         " bit of quantum mechanics. You might be interested in using Lightpile "
         "if working in the field of (organic) light emitting devices, known "
