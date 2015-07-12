@@ -4,7 +4,10 @@ Getting Started
 Overview
 --------
 
-Lightpile is a tool to simulate dipole emitters in planar thin film stacks. This is a physics problem involving eletromagnetism and a bit of quantum mechanics. You might be interested in using Lightpile if working in the field of (organic) light emitting devices, known as (O)LEDs, or quantum dots.
+Lightpile is a tool to simulate dipole emitters in thin film stacks.
+This is a physics problem involving eletromagnetism and a bit of quantum
+mechanics. You might be interested in using Lightpile if working in the field
+of (organic) light emitting devices, known as (O)LEDs, or quantum dots.
 
 It is written by Richard Pfeifer and licensed under the GNU AGPL license.
 
