@@ -11,13 +11,14 @@ __pycached__/
 *.so
 *.o
 
-# latex
+# docs / latex
 *.aux
 *.bbl
 *.blg
 *.tox
 *.toc
 docs/build/
+docs/html/
 
 # Distribution / packaging
 .Python
