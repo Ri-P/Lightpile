@@ -8,20 +8,22 @@ Welcome
 
 Lightpile is a tool to simulate dipole emitters in thin film stacks, written by Richard Pfeifer and licensed under the GNU AGPL license.
 
+TODO: Add Download links.
+
 Contents:
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    readme_link
    examples
    changes_link
    license_link
 
-Indices and tables
-==================
+.. Indices and tables
+.. ==================
 
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+.. * :ref:`genindex`
+.. * :ref:`modindex`
+.. * :ref:`search`
 
