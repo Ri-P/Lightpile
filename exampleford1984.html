@@ -1,0 +1,263 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Powerdensity of a Single Emitter in Front of Silver &mdash; Lightpile 0.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Lightpile 0.1.0 documentation" href="index.html" />
+    <link rel="up" title="Detailed Examples" href="examples.html" />
+    <link rel="next" title="Changes" href="changes_link.html" />
+    <link rel="prev" title="Detailed Examples" href="examples.html" /> 
+  </head>
+  <body role="document">
+      <div class="header" role="banner"><h1 class="heading"><a href="index.html">
+          <span>Lightpile 0.1.0 documentation</span></a></h1>
+        <h2 class="heading"><span>Powerdensity of a Single Emitter in Front of Silver</span></h2>
+      </div>
+      <div class="topnav" role="navigation" aria-label="top navigation">
+      
+        <p>
+        «&#160;&#160;<a href="examples.html">Detailed Examples</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="changes_link.html">Changes</a>&#160;&#160;»
+        </p>
+
+      </div>
+      <div class="content">
+        
+        
+  <div class="section" id="powerdensity-of-a-single-emitter-in-front-of-silver">
+<h1>Powerdensity of a Single Emitter in Front of Silver<a class="headerlink" href="#powerdensity-of-a-single-emitter-in-front-of-silver" title="Permalink to this headline">¶</a></h1>
+<p>In this example the angular distribution of the emitted power of a single monochromatic dipole emitter above a silver surface is calculated and compared to published data.</p>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="demonstrated-tasks">
+<h3>Demonstrated tasks<a class="headerlink" href="#demonstrated-tasks" title="Permalink to this headline">¶</a></h3>
+<p><code class="samp docutils literal"><span class="pre">dipolestudy</span></code></p>
+<p>The setting and results are published in <a class="reference internal" href="#ford1984" id="id1">[FW84]</a> where we aim to reproduce Figure 4 (dashed lines).
+The paper discusses in detail different models to describe reflection of electromagnetic waves.
+As LIGHTPILE uses the model of local media we restrict our discussion to these results.
+The solid lines in Figure 4 are the result of a calculation using other non-local models.</p>
+<p>We will use LIGHTPILE to produce a graph showing the same quantities as in Figure 4 of <a class="reference internal" href="#ford1984" id="id2">[FW84]</a>.
+To compare the data you can find graphically extracted datapoints from Figure 4 for both emitter distances in the example directory.
+We can use LIGHTPILE to overlay these datapoints onto the generated graph to compare the external datapoints with LIGHTPILE generated data.</p>
+</div>
+</div>
+<div class="section" id="setting-the-stack">
+<h2>Setting the stack<a class="headerlink" href="#setting-the-stack" title="Permalink to this headline">¶</a></h2>
+<p>To describe the situation to simulate to LIGHTPILE we can use the sections <code class="samp docutils literal"><span class="pre">materials</span></code>, <code class="samp docutils literal"><span class="pre">emitters</span></code> and <code class="samp docutils literal"><span class="pre">stack</span></code> in the configuration file.</p>
+<p>The vertically aligned dipole is placed in air (<img class="math" src="_images/math/0c797b341fc50581d53ae08d5412fac4ed837d6a.png" alt="\hat{n}=1.0"/>) with a distance <img class="math" src="_images/math/9e2431dae30586cdeb10da199a2e0e2979bf74e5.png" alt="d_1=0.05\,nm"/> (<img class="math" src="_images/math/af27afd342cbfac8f489521372c267630ec10e78.png" alt="d_2=2.5\,nm"/>) above a silver surface with optical index <img class="math" src="_images/math/d3471589157d8112bbb4ae7d878329d9564840c3.png" alt="\hat{n}_{Ag}=0.0767-4.366i"/> <a class="footnote-reference" href="#f1" id="id3">[1]</a> .:</p>
+<div class="highlight-python"><div class="highlight"><pre>[materials]
+# format: &lt;materialname&gt; &lt;(&lt;n&gt; [k])|&lt;path_to_nk_file&gt;&gt;
+ag      0.0767  4.366
+air     1.
+
+[emitters]
+# format: &lt;emittername&gt; &lt;vert|hor|iso&gt; &lt;IQE&gt;
+green   vert  1.0
+
+[stack]
+# format: &lt;(&lt;materialname&gt; &lt;thickness in nm&gt;)|&lt;emittername&gt;&gt;
+air     0
+green
+air     0.05
+ag      200
+</pre></div>
+</div>
+</div>
+<div class="section" id="result-quantities">
+<span id="result-quantities-label"></span><h2>Result quantities<a class="headerlink" href="#result-quantities" title="Permalink to this headline">¶</a></h2>
+<p>The radiation emitted by a dipole in a planar stack is dependent on the azimutal angle <img class="math" src="_images/math/019fb285c3b18c1dbd96efc9df1d399defb21ddf.png" alt="\theta"/> of the wavevector <img class="math" src="_images/math/8a331f3078405d72c69e77906a0cab3bacb64268.png" alt="\v k"/> of the emitted radiation.
+It is often easier and conceptually more general to use the component of the wave vector parallel to the surfaces of the planar stack, named <img class="math" src="_images/math/b0c0f33cd51810443c59515d76cea555004714f1.png" alt="q"/> (transverse wavevector).
+The azimutal angle is related to <img class="math" src="_images/math/b0c0f33cd51810443c59515d76cea555004714f1.png" alt="q"/> by</p>
+<div class="math">
+<p><img src="_images/math/a7bc3fabad9804d196c3f9f24acd07bd729665a2.png" alt="\sin \theta = q/\abs{\v k}"/></p>
+</div><p>To have a quantity independent of the wavelength LIGHTPILE uses the normed transverse wavevector</p>
+<div class="math">
+<p><img src="_images/math/f776a182b4434574eef24cd342cfba48da584126.png" alt="u = \frac{q}{k_{vac}}"/></p>
+</div><p>Using <img class="math" src="_images/math/9afa5a3bab910b6c0623d9ed4b7ae2444e01e9bc.png" alt="u"/> to describe the direction of the radiation we can quantify the emitted power per direction (the powerdistribution) as <img class="math" src="_images/math/cf05f0856a4eeb00f4944d15cd66ff793c112273.png" alt="\frac{\dd P}{\dd u}"/>.
+As the power of dipole is strongly dependent on its wavelength (or frequency) it is again convinient to norm this power.
+As we know the emission power a free dipole in vacuum to be <a class="footnote-reference" href="#f2" id="id4">[2]</a></p>
+<div class="math">
+<p><img src="_images/math/5b8084584de6250765f5e1bfd6b64ca2bb91cd99.png" alt="P_0 = \frac{c_0 p^2 k_{vac}^4}{12 \pi \epsilon_0}"/></p>
+</div><p>we can use it to define the normed powerdistribution</p>
+<div class="math">
+<p><img src="_images/math/18f82a0514280a2d89f6bebdeb7fbd0a7235564d.png" alt="p = \frac{1}{P_0} \frac{\dd P}{\dd u}"/></p>
+</div><p>With known powerdistribution <img class="math" src="_images/math/498729fcfc48530eba437e00a73736af9963e9a8.png" alt="p(u)"/> the total power emitted by a dipole emitter within a planar stack is therefore</p>
+<div class="math" id="equation-integrated_powerdensity">
+<p><span class="eqno">(1)</span><img src="_images/math/e55981117296394f2affb8844f0af6218b09ebee.png" alt="P = P_0 \int_0^{\infty} p(u) \dd u"/></p>
+</div><p>This powerdistribution <img class="math" src="_images/math/498729fcfc48530eba437e00a73736af9963e9a8.png" alt="p(u)"/> is shown in Figure 4 of <a class="reference internal" href="#ford1984" id="id5">[FW84]</a> although it is named <img class="math" src="_images/math/b6e933b4231659ca711e76d3f7b0ef04948fde2e.png" alt="\frac{k_1}{P_{free}} \frac{\dd P}{\dd p}"/> and the normed transverse wavevector <img class="math" src="_images/math/9afa5a3bab910b6c0623d9ed4b7ae2444e01e9bc.png" alt="u"/> is named <img class="math" src="_images/math/020807ef652b478c9db19d116dee210de003dee5.png" alt="p/k_1"/>.</p>
+</div>
+<div class="section" id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
+<p>LIGHTPILE explicitly calculates the powerdistribution of a single dipole emitter with the <code class="samp docutils literal"><span class="pre">dipolestudy</span></code> task. It requires information about the wavelength, frequency or energy of the dipole (<code class="samp docutils literal"><span class="pre">spectralpoint</span></code>) and the range of the transverse wavevector (<code class="samp docutils literal"><span class="pre">angularrange</span></code>).</p>
+<div class="highlight-python"><div class="highlight"><pre>[dipolestudy]
+spectralpoint wavelength nm 633
+angularrange u None 0.1 1e4 1000 log
+</pre></div>
+</div>
+<p>The wavelength of <img class="math" src="_images/math/708e6a08b7c5cd6d552edb42fa07e7d22be3afc5.png" alt="\lambda=633\,nm"/> is equivalent to the given energy of <img class="math" src="_images/math/281ea366c90827343897593bb072058b51fe497d.png" alt="E=1.96\,eV"/>.</p>
+<p>The result data is presented in text form and as a graph.
+The graph of the powerdistribution <img class="math" src="_images/math/5367f03067307a802c116ee28cb551a0e9c7f4f1.png" alt="p"/> versus angular data is named <code class="samp docutils literal"><span class="pre">graph_p_a</span></code> and can be configured in the section <code class="samp docutils literal"><span class="pre">[graph_p_a]</span></code> in the configfile:</p>
+<div class="highlight-python"><div class="highlight"><pre>[graph_p_a]
+yscale log     # format: yscale &lt;log|linear&gt;
+lines all      # format: lines &lt;all|total&gt;
+xlim 0.1 1e4   # format: xlim &lt;xlim_left&gt; &lt;xlim_right&gt;
+ylim 1e-2 1e4  # format: ylim &lt;ylim_bottom&gt; &lt;ylim_top&gt;
+# format: externaldata &lt;path_to_datapoint_file&gt; [label]
+externaldata &quot;examples/ex_ford1984/ford1984_fig4a.dat&quot; &quot;Ford d=0.05nm&quot;
+</pre></div>
+</div>
+</div>
+<div class="section" id="results">
+<h2>Results<a class="headerlink" href="#results" title="Permalink to this headline">¶</a></h2>
+<p>Finishing the calculation LIGHTPILE will write its output to the current working directory (the one from where LIGHTPILE was called).
+The <code class="samp docutils literal"><span class="pre">dipolestudy</span></code> task produces four outputs:</p>
+<ul class="simple">
+<li>textfile <code class="samp docutils literal"><span class="pre">dipolestudy_data_p.txt</span></code></li>
+<li>textfile <code class="samp docutils literal"><span class="pre">dipolestudy_data_f.txt</span></code></li>
+<li>image <code class="samp docutils literal"><span class="pre">dipolestudy_graph_p.png</span></code></li>
+<li>image <code class="samp docutils literal"><span class="pre">dipolestudy_graph_f.png</span></code></li>
+</ul>
+<p>The textfiles include all the data used to generate the graphs.
+Additionally important parameters and not visualized results are included.
+The format should allow an easy import into other data manipulation or visualization programs.</p>
+<p>We will shortly discuss the angular powerdistribution result <img class="math" src="_images/math/498729fcfc48530eba437e00a73736af9963e9a8.png" alt="p(u)"/>. The emission propability <img class="math" src="_images/math/474d023e2cff50c239362a62549d2f7c38aefe66.png" alt="f(u)"/> is discussed in section <a class="reference internal" href="#powerdensity-vs-emission-propability-density-label"><span>Powerdensity vs emission propability density</span></a>.</p>
+<p>Running LIGHTPILE twice for both emitter distances <img class="math" src="_images/math/10df4a4c4e7aab3d90a67b21ba9c6791e132f103.png" alt="d"/> we get graphs as shown in Figure~ref{fig:fig4}.
+The blue line represents the total powerdensity emitted <img class="math" src="_images/math/498729fcfc48530eba437e00a73736af9963e9a8.png" alt="p(u)"/>.
+Also shown are the individual contributions from vertically or horizontally oriented dipoles for both polarizations.
+As our simulation contains a vertical dipole only, the total <img class="math" src="_images/math/498729fcfc48530eba437e00a73736af9963e9a8.png" alt="p(u)"/> is identical to the slash-dotted red <img class="math" src="_images/math/468b02253843abc9a483ebd76ec2fab08fc664b6.png" alt="p_{\text{vTM}}(u)"/>.
+With the command :samp`externaldata` we imported and overlayed the data from <a class="reference internal" href="#ford1984" id="id6">[FW84]</a> as black line.
+The calculated and imported data matches up to a small offset.
+This is because we do not have access to the numeric data of <a class="reference internal" href="#ford1984" id="id7">[FW84]</a> but had to rely on graphical extraction which introduces systematic and random errors.</p>
+<p>Let us now discuss the plot of <img class="math" src="_images/math/498729fcfc48530eba437e00a73736af9963e9a8.png" alt="p(u)"/>: Different ranges of the normed transversal wavevector <img class="math" src="_images/math/9afa5a3bab910b6c0623d9ed4b7ae2444e01e9bc.png" alt="u"/> are associated with different kind of modes.
+For <img class="math" src="_images/math/ddc3d03e396e33458883aa7e2673f0bea0471bb7.png" alt="0&lt;u&lt;n_{air}=1"/> the power is emitted as radiative modes with emission angles in air of <img class="math" src="_images/math/d878ecab0049c8963dfd1850f756c1cb934cf3b3.png" alt="0"/> up to <img class="math" src="_images/math/296cd740f1bdbbb6bb38315d457dc46591e48dd8.png" alt="90^{\circ}"/>.
+Modes with <img class="math" src="_images/math/3fe604e50f9a0971492d1c759e649f041cf9d052.png" alt="u&gt;n_{air}=1"/> are bound to the planar stack in different ways.
+In our case of a free emitter in front of a metallic interface we do not have any waveguide modes.
+The peak at <img class="math" src="_images/math/696ca75284653dec9c506b4fe7f78faab6eb1593.png" alt="u \ge 1"/> is associated with the excitation of a surface plasmon-polariton mode at the silver-air interface.
+The emitted power is transported along the silver surface and dissipated due to losses in the metal although these losses are not required for the existance of the plasmon mode.
+The very broad and high exitation beyond <img class="math" src="_images/math/a05b1e329ffaa8e5d35c7a00adddac20d2334c71.png" alt="u &gt; 10"/> is due to dissipation effects in the metal and can be attributed to lossy surface waves.</p>
+<p>As discussed in <a class="reference internal" href="#ford1984" id="id8">[FW84]</a> the model of complex refractive indexes as a local response of the material to electromagnetic excitation is becoming less usefull for highly evanescent waves and not valid in the range of <img class="math" src="_images/math/5c8ed04486141f5a8d112bc301a5fdfd22bbbc1d.png" alt="u \gg n"/>.
+Nevertheless we see LIGHTPILE correctly calculating the powerdistribution within the local model.
+To stay within the range of the local model emitters should be placed at distances <img class="math" src="_images/math/0dcde4239e4ef2be879f872f9a7dd306cd337e6b.png" alt="d&gt;\lambda/50"/> of metal interfaces.</p>
+<div class="figure" id="id13">
+<img alt="_images/dipolestudy_graph_p_ford1984.png" src="_images/dipolestudy_graph_p_ford1984.png" />
+<p class="caption"><span class="caption-text">Powerdistribution <img class="math" src="_images/math/498729fcfc48530eba437e00a73736af9963e9a8.png" alt="p(u)"/> for different emitter distances</span></p>
+<div class="legend">
+Powerdistribution <img class="math" src="_images/math/498729fcfc48530eba437e00a73736af9963e9a8.png" alt="p(u)"/> for a vertically oriented dipole emitter above a silver interface as described in <a class="reference internal" href="#ford1984" id="id9">[FW84]</a>. The black lines represent the graphically extracted data of <a class="reference internal" href="#ford1984" id="id10">[FW84]</a>. The limited accuracy of graphical extraction explains the slight offset to the LIGHTPILE caluclated lines. Only TM polarized radiation is seen as a vertical dipole does not emit TE polarized radiation.</div>
+</div>
+</div>
+<div class="section" id="powerdensity-vs-emission-propability-density">
+<span id="powerdensity-vs-emission-propability-density-label"></span><h2>Powerdensity vs emission propability density<a class="headerlink" href="#powerdensity-vs-emission-propability-density" title="Permalink to this headline">¶</a></h2>
+<p>In this section we are going to discuss the emission propability density <img class="math" src="_images/math/474d023e2cff50c239362a62549d2f7c38aefe66.png" alt="f(u)"/> as shown in <code class="samp docutils literal"><span class="pre">graph_f_a</span></code> or returned in the textfile <code class="samp docutils literal"><span class="pre">dipolestudy_data_f.txt</span></code> and its meaning in relation to the powerdensity <img class="math" src="_images/math/498729fcfc48530eba437e00a73736af9963e9a8.png" alt="p(u)"/>.
+This is important because in the field of excited emitters in thin film stacks <img class="math" src="_images/math/474d023e2cff50c239362a62549d2f7c38aefe66.png" alt="f(u)"/> is often more valueable as <img class="math" src="_images/math/498729fcfc48530eba437e00a73736af9963e9a8.png" alt="p(u)"/> can be misleading.</p>
+<div class="section" id="definition-of-emission-propability-density">
+<h3>Definition of emission propability density<a class="headerlink" href="#definition-of-emission-propability-density" title="Permalink to this headline">¶</a></h3>
+<p>As discussed in section <a class="reference internal" href="#result-quantities-label"><span>Result quantities</span></a> and given in <a href="#equation-integrated_powerdensity">(1)</a> the total emitted power of a dipole emitter is variable, depending on <img class="math" src="_images/math/498729fcfc48530eba437e00a73736af9963e9a8.png" alt="p(u)"/> which itself depends on the stack and therefore the optical environment.
+That implies that a dipole antenna close to a metal surface emits more power than the same dipole antenna in free air.
+This is possible because the derivation of <img class="math" src="_images/math/498729fcfc48530eba437e00a73736af9963e9a8.png" alt="p(u)"/> assumes a forced oscillation of a dipole with constant amplitude.</p>
+<p>If we use this model to simulate the decay of exitonic states, as in LEDs, OLEDs or quantum dots we have to account for important differences.
+Excitonic emission is a stochastic process and it is easily understood that the total emitted power has an upper limit in the injected electric power of the electronic charge carriers.
+The influence of the optical environment on the emission propability of an emitter or its rate <img class="math" src="_images/math/7a4bd13074001331e5af3d0596b96fb887513db2.png" alt="\Gamma_{\text{rad}}"/> is known as the Purcell Effect.
+An excited quantum emitter near a metallic surface does not emit more power, but its propability of emission is higher.
+Its rate of radiative emission is increased while possible nonradiative decay is assumed to be unaffacted.</p>
+<p>The classical dipole model is connected with the quantum picture by the assumption that the propability for photon-emission is proportional to the total emitted power of the classical dipole <img class="math" src="_images/math/b20995cf5c9ef1ab7542d54fa3ab3598e1d035cb.png" alt="P"/>.</p>
+<div class="math">
+<p><img src="_images/math/64e3b141f501ea4002da3a2aa26690e51a996931.png" alt="\Gamma_{\text{rad}} = \frac{P}{P_0} \Gamma^0_{\text{rad}}"/></p>
+</div><p>With the inclusion of nonradiative decays with the rate <img class="math" src="_images/math/11fb5a65eeb6952a62008a0ac1568bcebe678703.png" alt="\Gamma_{\text{nrad}}"/>, assumed to be independent of the optical environment, the total decay rate</p>
+<div class="math">
+<p><img src="_images/math/403465b7a6a50d970b7b4e4d863229c250234bd2.png" alt="\Gamma = \Gamma_{\text{nrad}} + \frac{P}{P_0} \Gamma^0_{\text{rad}}"/></p>
+</div><p>and the effective radiative quantum yield</p>
+<div class="math">
+<p><img src="_images/math/f0402b1c9a384f1368ed1b6a7ec41640cfe489e4.png" alt="\eta_{\text{rad}} = \frac{ \frac{P}{P_0} \eta^0} {1-\eta^0 + \frac{P}{P_0}\eta^0}"/></p>
+</div><p>is obtained.
+The only unknown parameter is the emitter dependent intrinsic radiative quantum yield <img class="math" src="_images/math/08c86a90088e7bdfac18fe8567a043ee7faa954f.png" alt="\eta^0"/> or intrinsic quantum efficiency IQE.</p>
+<p>We define the emission propability density <img class="math" src="_images/math/346c43e1f412aedf6587c944eddb56d2649d0056.png" alt="f"/> as</p>
+<div class="math" id="equation-eq_def_f">
+<p><span class="eqno">(2)</span><img src="_images/math/947ef0591f3e2a6106df4b242e46c1ffd44dc398.png" alt="f(u) = \frac{\eta_{\text{rad}}}{P} \frac{ \dd P}{\dd u} = \frac{p(u)}{\left( \frac{1-\eta^0}{\eta^0} + \frac{P}{P_0} \right) }"/></p>
+</div><p>so that <img class="math" src="_images/math/498348ffde7b72391f8aa718ee034ea6838b2bf5.png" alt="\int_0^\infty f(u) \dd u = \eta_{\text{rad}}"/>.</p>
+</div>
+<div class="section" id="discussion">
+<h3>Discussion<a class="headerlink" href="#discussion" title="Permalink to this headline">¶</a></h3>
+<p>In the definition of <img class="math" src="_images/math/474d023e2cff50c239362a62549d2f7c38aefe66.png" alt="f(u)"/> in <a href="#equation-eq_def_f">(2)</a> we can see that it differs from <img class="math" src="_images/math/498729fcfc48530eba437e00a73736af9963e9a8.png" alt="p(u)"/> only by a norming factor.
+This norming factor <img class="math" src="_images/math/6c86990e39671677081c1c2cc4bb2b0e1bde0104.png" alt="\eta_{\text{rad}} \frac{P_0}{P}"/> expresses the difference of a constant amplitude emitter and a stochastic quantum emitter.</p>
+<p>Let us compare the two cases of <a class="reference internal" href="#ford1984" id="id11">[FW84]</a> with emitter distances of <img class="math" src="_images/math/9e2431dae30586cdeb10da199a2e0e2979bf74e5.png" alt="d_1=0.05\,nm"/> and <img class="math" src="_images/math/af27afd342cbfac8f489521372c267630ec10e78.png" alt="d_2=2.5\,nm"/>.
+We are interested in the brightness of the two emitters as seen from any angle in the air halfspace and use Fig. <a class="reference internal" href="#fig-f-comparison"><span>comparison of  for different emitter distances</span></a> with <img class="math" src="_images/math/474d023e2cff50c239362a62549d2f7c38aefe66.png" alt="f(u)"/> shown in blue and <img class="math" src="_images/math/498729fcfc48530eba437e00a73736af9963e9a8.png" alt="p(u)"/> shown in black.</p>
+<p>Due to the extreme coupling of evanescent waves to the lossy surfacce modes in the case of small distances of the emitter to the metal the integral <img class="math" src="_images/math/f73451749f59af70d067e05bfc6fe2458e5a35fe.png" alt="P/P_0 = \int_0^{\infty}p(u)\dd u"/> is increased dramatically.
+<img class="math" src="_images/math/b065bd77c93844c448b453ea2e23732cb68b4667.png" alt="P/P_0 \sim 1.25e7"/> for the case <img class="math" src="_images/math/1c82f34394306bc9233c93fc333b3c0cfec1ebe5.png" alt="d_1"/> (left) while only <img class="math" src="_images/math/745c50a15137053e4f568ff5c8e87e4577fb0f22.png" alt="P/P_0 \sim 105"/> in the case of <img class="math" src="_images/math/d8d3e999aba8eea4fb76b8955a817dfacf635065.png" alt="d_2"/> (right).
+In the picture of constant amplitude dipoles the former would bear a huge strain on its external power supply but appearing with equal brightness compared to the later for an external observer.
+This is expressed by <img class="math" src="_images/math/498729fcfc48530eba437e00a73736af9963e9a8.png" alt="p(u)"/> being equal in the radiative mode range (<img class="math" src="_images/math/9e168ecf1fa9c1059aca1d11947268e66f9e1545.png" alt="0&lt;u&lt;1"/>).
+If we compare the observation of two ensembles of exitonic emitters excited by a constant supply of charge carriers there would be a difference of around five magnitudes for an external observer as can be seen by the dramatically reduced emission propability density <img class="math" src="_images/math/474d023e2cff50c239362a62549d2f7c38aefe66.png" alt="f(u)"/>.</p>
+<p>It should be noted that <img class="math" src="_images/math/498729fcfc48530eba437e00a73736af9963e9a8.png" alt="p(u)"/> is much easier to calculate than <img class="math" src="_images/math/474d023e2cff50c239362a62549d2f7c38aefe66.png" alt="f(u)"/>. To determine the norming factor needed for <img class="math" src="_images/math/474d023e2cff50c239362a62549d2f7c38aefe66.png" alt="f(u)"/> we have to calculate <img class="math" src="_images/math/498729fcfc48530eba437e00a73736af9963e9a8.png" alt="p(u)"/> at every positive <img class="math" src="_images/math/9afa5a3bab910b6c0623d9ed4b7ae2444e01e9bc.png" alt="u"/> to find the integral <img class="math" src="_images/math/209de25a6c1ebd159a348d87d3684255f5494921.png" alt="\int_0^{\infty} p(u) \dd u"/>. As this job can never be truely accomplish we have to rely on reasonably good estimates.</p>
+<p>We should keep in mind that both quantities <img class="math" src="_images/math/498729fcfc48530eba437e00a73736af9963e9a8.png" alt="p(u)"/> and <img class="math" src="_images/math/474d023e2cff50c239362a62549d2f7c38aefe66.png" alt="f(u)"/> have their uses but in the case of excitonic emitters the emission propability density is less misleading.</p>
+<div class="figure" id="id14">
+<span id="fig-f-comparison"></span><img alt="_images/dipolestudy_graph_f_ford1984.png" src="_images/dipolestudy_graph_f_ford1984.png" />
+<p class="caption"><span class="caption-text">comparison of <img class="math" src="_images/math/346c43e1f412aedf6587c944eddb56d2649d0056.png" alt="f"/> for different emitter distances</span></p>
+<div class="legend">
+The emission propability density <img class="math" src="_images/math/474d023e2cff50c239362a62549d2f7c38aefe66.png" alt="f(u)"/> (blue line) for radiative modes (<img class="math" src="_images/math/9e168ecf1fa9c1059aca1d11947268e66f9e1545.png" alt="0&lt;u&lt;1"/>) is dramatically reduced for decreased distance to the silver film (left) compared to the greater distance (right). In contrast the emitted power density <img class="math" src="_images/math/498729fcfc48530eba437e00a73736af9963e9a8.png" alt="p(u)"/> (black line) is unaffected. The change in the emission propablity density shows the expected effect of quenching near metal interfaces.</div>
+</div>
+<p class="rubric">Footnotes</p>
+<table class="docutils footnote" frame="void" id="f1" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[1]</a></td><td>The used dielectric constant <img class="math" src="_images/math/8739ffff1e4a97f64e8faed8464bb70ec7532db5.png" alt="\hat{\epsilon}=-19.06+0.67i"/> for the silver film is taken from Fig.11 of <a class="reference internal" href="#ford1984" id="id12">[FW84]</a>.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="f2" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id4">[2]</a></td><td><img class="math" src="_images/math/c41becef4e6c7851618828fec733876b1782c438.png" alt="c_0"/> is the speed of light in vacuum. <img class="math" src="_images/math/5367f03067307a802c116ee28cb551a0e9c7f4f1.png" alt="p"/> is the dipole moment of the dipole. <img class="math" src="_images/math/2f8b43e843bded1c6e96a7520e2f0880fb5614e5.png" alt="k_{vac}=2 \pi / \lambda"/> is the wavevector.</td></tr>
+</tbody>
+</table>
+<p id="bibtex-bibliography-exampleford1984-0"><table class="docutils citation" frame="void" id="ford1984" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[FW84]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id2">2</a>, <a class="fn-backref" href="#id5">3</a>, <a class="fn-backref" href="#id6">4</a>, <a class="fn-backref" href="#id7">5</a>, <a class="fn-backref" href="#id8">6</a>, <a class="fn-backref" href="#id9">7</a>, <a class="fn-backref" href="#id10">8</a>, <a class="fn-backref" href="#id11">9</a>, <a class="fn-backref" href="#id12">10</a>)</em> G&nbsp;W Ford and W&nbsp;H Weber. Electromagnetic interactions of molecules with metal surfaces. <em>Physics Reports</em>, 113(4):195–287, 1984.</td></tr>
+</tbody>
+</table>
+</p>
+</div>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav" role="navigation" aria-label="bottom navigation">
+      
+        <p>
+        «&#160;&#160;<a href="examples.html">Detailed Examples</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="changes_link.html">Changes</a>&#160;&#160;»
+        </p>
+
+      </div>
+
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Richard Pfeifer.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.
+    </div>
+  </body>
+</html>
