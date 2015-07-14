@@ -3,12 +3,27 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome
-=======
 
-Lightpile is a tool to simulate dipole emitters in thin film stacks, written by Richard Pfeifer and licensed under the GNU AGPL license.
+Get Lightpile
+=============
 
-TODO: Add Download links.
+.. container:: downloads
+
+   A tool to simulate dipole emitters in thin film stacks.
+
+   +--------------------------------+-------------------------------+-------------------------------+
+   | .. rst-class:: button          | .. rst-class:: button         | .. rst-class:: github button  |
+   |                                |                               |                               |
+   | `Download ZIP`_                | `Download TAR`_               | `View on GitHub`_             |
+   +--------------------------------+-------------------------------+-------------------------------+
+
+   .. _Download ZIP: https://github.com/Ri-P/Lightpile/zipball/master
+   .. _Download TAR: https://github.com/Ri-P/Lightpile/tarball/master
+   .. _View on GitHub: https://github.com/Ri-P/Lightpile
+
+   This project is maintained by `Ri-P`_ and licensed under the GNU AGPL license.
+
+   .. _Ri-P: https://github.com/Ri-P/
 
 Contents:
 
