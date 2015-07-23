@@ -50,11 +50,28 @@
         
   <div class="section" id="powerdensity-of-a-single-emitter-in-front-of-silver">
 <h1>Powerdensity of a Single Emitter in Front of Silver<a class="headerlink" href="#powerdensity-of-a-single-emitter-in-front-of-silver" title="Permalink to this headline">¶</a></h1>
-<p>In this example the angular distribution of the emitted power of a single monochromatic dipole emitter above a silver surface is calculated and compared to published data.</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#overview" id="id15">Overview</a><ul>
+<li><a class="reference internal" href="#demonstrated-tasks" id="id16">Demonstrated tasks</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#setting-the-stack" id="id17">Setting the stack</a></li>
+<li><a class="reference internal" href="#result-quantities" id="id18">Result quantities</a></li>
+<li><a class="reference internal" href="#configuration" id="id19">Configuration</a></li>
+<li><a class="reference internal" href="#results" id="id20">Results</a></li>
+<li><a class="reference internal" href="#powerdensity-vs-emission-propability-density" id="id21">Powerdensity vs emission propability density</a><ul>
+<li><a class="reference internal" href="#definition-of-emission-propability-density" id="id22">Definition of emission propability density</a></li>
+<li><a class="reference internal" href="#discussion" id="id23">Discussion</a></li>
+</ul>
+</li>
+</ul>
+</div>
 <div class="section" id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id15">Overview</a><a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>In this example the angular distribution of the emitted power of a single monochromatic dipole emitter above a silver surface is calculated and compared to published data.</p>
 <div class="section" id="demonstrated-tasks">
-<h3>Demonstrated tasks<a class="headerlink" href="#demonstrated-tasks" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id16">Demonstrated tasks</a><a class="headerlink" href="#demonstrated-tasks" title="Permalink to this headline">¶</a></h3>
 <p><code class="samp docutils literal"><span class="pre">dipolestudy</span></code></p>
 <p>The setting and results are published in <a class="reference internal" href="#ford1984" id="id1">[FW84]</a> where we aim to reproduce Figure 4 (dashed lines).
 The paper discusses in detail different models to describe reflection of electromagnetic waves.
@@ -66,7 +83,7 @@ We can use LIGHTPILE to overlay these datapoints onto the generated graph to com
 </div>
 </div>
 <div class="section" id="setting-the-stack">
-<h2>Setting the stack<a class="headerlink" href="#setting-the-stack" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id17">Setting the stack</a><a class="headerlink" href="#setting-the-stack" title="Permalink to this headline">¶</a></h2>
 <p>To describe the situation to simulate to LIGHTPILE we can use the sections <code class="samp docutils literal"><span class="pre">materials</span></code>, <code class="samp docutils literal"><span class="pre">emitters</span></code> and <code class="samp docutils literal"><span class="pre">stack</span></code> in the configuration file.</p>
 <p>The vertically aligned dipole is placed in air (<img class="math" src="_images/math/0c797b341fc50581d53ae08d5412fac4ed837d6a.png" alt="\hat{n}=1.0"/>) with a distance <img class="math" src="_images/math/9e2431dae30586cdeb10da199a2e0e2979bf74e5.png" alt="d_1=0.05\,nm"/> (<img class="math" src="_images/math/af27afd342cbfac8f489521372c267630ec10e78.png" alt="d_2=2.5\,nm"/>) above a silver surface with optical index <img class="math" src="_images/math/d3471589157d8112bbb4ae7d878329d9564840c3.png" alt="\hat{n}_{Ag}=0.0767-4.366i"/> <a class="footnote-reference" href="#f1" id="id3">[1]</a> .:</p>
 <div class="highlight-python"><div class="highlight"><pre>[materials]
@@ -88,7 +105,7 @@ ag      200
 </div>
 </div>
 <div class="section" id="result-quantities">
-<span id="result-quantities-label"></span><h2>Result quantities<a class="headerlink" href="#result-quantities" title="Permalink to this headline">¶</a></h2>
+<span id="result-quantities-label"></span><h2><a class="toc-backref" href="#id18">Result quantities</a><a class="headerlink" href="#result-quantities" title="Permalink to this headline">¶</a></h2>
 <p>The radiation emitted by a dipole in a planar stack is dependent on the azimutal angle <img class="math" src="_images/math/019fb285c3b18c1dbd96efc9df1d399defb21ddf.png" alt="\theta"/> of the wavevector <img class="math" src="_images/math/8a331f3078405d72c69e77906a0cab3bacb64268.png" alt="\v k"/> of the emitted radiation.
 It is often easier and conceptually more general to use the component of the wave vector parallel to the surfaces of the planar stack, named <img class="math" src="_images/math/b0c0f33cd51810443c59515d76cea555004714f1.png" alt="q"/> (transverse wavevector).
 The azimutal angle is related to <img class="math" src="_images/math/b0c0f33cd51810443c59515d76cea555004714f1.png" alt="q"/> by</p>
@@ -111,7 +128,7 @@ As we know the emission power a free dipole in vacuum to be <a class="footnote-r
 </div><p>This powerdistribution <img class="math" src="_images/math/498729fcfc48530eba437e00a73736af9963e9a8.png" alt="p(u)"/> is shown in Figure 4 of <a class="reference internal" href="#ford1984" id="id5">[FW84]</a> although it is named <img class="math" src="_images/math/b6e933b4231659ca711e76d3f7b0ef04948fde2e.png" alt="\frac{k_1}{P_{free}} \frac{\dd P}{\dd p}"/> and the normed transverse wavevector <img class="math" src="_images/math/9afa5a3bab910b6c0623d9ed4b7ae2444e01e9bc.png" alt="u"/> is named <img class="math" src="_images/math/020807ef652b478c9db19d116dee210de003dee5.png" alt="p/k_1"/>.</p>
 </div>
 <div class="section" id="configuration">
-<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id19">Configuration</a><a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
 <p>LIGHTPILE explicitly calculates the powerdistribution of a single dipole emitter with the <code class="samp docutils literal"><span class="pre">dipolestudy</span></code> task. It requires information about the wavelength, frequency or energy of the dipole (<code class="samp docutils literal"><span class="pre">spectralpoint</span></code>) and the range of the transverse wavevector (<code class="samp docutils literal"><span class="pre">angularrange</span></code>).</p>
 <div class="highlight-python"><div class="highlight"><pre>[dipolestudy]
 spectralpoint wavelength nm 633
@@ -132,7 +149,7 @@ externaldata &quot;examples/ex_ford1984/ford1984_fig4a.dat&quot; &quot;Ford d=0.
 </div>
 </div>
 <div class="section" id="results">
-<h2>Results<a class="headerlink" href="#results" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id20">Results</a><a class="headerlink" href="#results" title="Permalink to this headline">¶</a></h2>
 <p>Finishing the calculation LIGHTPILE will write its output to the current working directory (the one from where LIGHTPILE was called).
 The <code class="samp docutils literal"><span class="pre">dipolestudy</span></code> task produces four outputs:</p>
 <ul class="simple">
@@ -170,11 +187,11 @@ Powerdistribution <img class="math" src="_images/math/498729fcfc48530eba437e00a7
 </div>
 </div>
 <div class="section" id="powerdensity-vs-emission-propability-density">
-<span id="powerdensity-vs-emission-propability-density-label"></span><h2>Powerdensity vs emission propability density<a class="headerlink" href="#powerdensity-vs-emission-propability-density" title="Permalink to this headline">¶</a></h2>
+<span id="powerdensity-vs-emission-propability-density-label"></span><h2><a class="toc-backref" href="#id21">Powerdensity vs emission propability density</a><a class="headerlink" href="#powerdensity-vs-emission-propability-density" title="Permalink to this headline">¶</a></h2>
 <p>In this section we are going to discuss the emission propability density <img class="math" src="_images/math/474d023e2cff50c239362a62549d2f7c38aefe66.png" alt="f(u)"/> as shown in <code class="samp docutils literal"><span class="pre">graph_f_a</span></code> or returned in the textfile <code class="samp docutils literal"><span class="pre">dipolestudy_data_f.txt</span></code> and its meaning in relation to the powerdensity <img class="math" src="_images/math/498729fcfc48530eba437e00a73736af9963e9a8.png" alt="p(u)"/>.
 This is important because in the field of excited emitters in thin film stacks <img class="math" src="_images/math/474d023e2cff50c239362a62549d2f7c38aefe66.png" alt="f(u)"/> is often more valueable as <img class="math" src="_images/math/498729fcfc48530eba437e00a73736af9963e9a8.png" alt="p(u)"/> can be misleading.</p>
 <div class="section" id="definition-of-emission-propability-density">
-<h3>Definition of emission propability density<a class="headerlink" href="#definition-of-emission-propability-density" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id22">Definition of emission propability density</a><a class="headerlink" href="#definition-of-emission-propability-density" title="Permalink to this headline">¶</a></h3>
 <p>As discussed in section <a class="reference internal" href="#result-quantities-label"><span>Result quantities</span></a> and given in <a href="#equation-integrated_powerdensity">(1)</a> the total emitted power of a dipole emitter is variable, depending on <img class="math" src="_images/math/498729fcfc48530eba437e00a73736af9963e9a8.png" alt="p(u)"/> which itself depends on the stack and therefore the optical environment.
 That implies that a dipole antenna close to a metal surface emits more power than the same dipole antenna in free air.
 This is possible because the derivation of <img class="math" src="_images/math/498729fcfc48530eba437e00a73736af9963e9a8.png" alt="p(u)"/> assumes a forced oscillation of a dipole with constant amplitude.</p>
@@ -200,7 +217,7 @@ The only unknown parameter is the emitter dependent intrinsic radiative quantum 
 </div><p>so that <img class="math" src="_images/math/498348ffde7b72391f8aa718ee034ea6838b2bf5.png" alt="\int_0^\infty f(u) \dd u = \eta_{\text{rad}}"/>.</p>
 </div>
 <div class="section" id="discussion">
-<h3>Discussion<a class="headerlink" href="#discussion" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id23">Discussion</a><a class="headerlink" href="#discussion" title="Permalink to this headline">¶</a></h3>
 <p>In the definition of <img class="math" src="_images/math/474d023e2cff50c239362a62549d2f7c38aefe66.png" alt="f(u)"/> in <a href="#equation-eq_def_f">(2)</a> we can see that it differs from <img class="math" src="_images/math/498729fcfc48530eba437e00a73736af9963e9a8.png" alt="p(u)"/> only by a norming factor.
 This norming factor <img class="math" src="_images/math/6c86990e39671677081c1c2cc4bb2b0e1bde0104.png" alt="\eta_{\text{rad}} \frac{P_0}{P}"/> expresses the difference of a constant amplitude emitter and a stochastic quantum emitter.</p>
 <p>Let us compare the two cases of <a class="reference internal" href="#ford1984" id="id11">[FW84]</a> with emitter distances of <img class="math" src="_images/math/9e2431dae30586cdeb10da199a2e0e2979bf74e5.png" alt="d_1=0.05\,nm"/> and <img class="math" src="_images/math/af27afd342cbfac8f489521372c267630ec10e78.png" alt="d_2=2.5\,nm"/>.
@@ -258,7 +275,7 @@ The emission propability density <img class="math" src="_images/math/474d023e2cf
 
     <div class="footer" role="contentinfo">
         &copy; Copyright 2015, Richard Pfeifer.
-      Last updated on Jul 13, 2015.
+      Last updated on Jul 23, 2015.
     </div>
   </body>
 </html>

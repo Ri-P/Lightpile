@@ -26,7 +26,7 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="top" title="Lightpile 0.1.0 documentation" href="index.html" />
     <link rel="next" title="Detailed Examples" href="examples.html" />
-    <link rel="prev" title="Welcome" href="index.html" /> 
+    <link rel="prev" title="Get Lightpile" href="index.html" /> 
   </head>
   <body role="document">
       <div class="header" role="banner"><h1 class="heading"><a href="index.html">
@@ -36,7 +36,7 @@
       <div class="topnav" role="navigation" aria-label="top navigation">
       
         <p>
-        «&#160;&#160;<a href="index.html">Welcome</a>
+        «&#160;&#160;<a href="index.html">Get Lightpile</a>
         &#160;&#160;::&#160;&#160;
         <a class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
@@ -55,15 +55,99 @@
 This is a physics problem involving eletromagnetism and a bit of quantum
 mechanics. You might be interested in using Lightpile if working in the field
 of (organic) light emitting devices, known as (O)LEDs, or quantum dots.</p>
+<p>At the moment Lightpile calculates the emission behaviour of a monochromatic
+dipole emitter of arbitrary orientation within a pile of thin films.</p>
 <p>It is written by Richard Pfeifer and licensed under the GNU AGPL license.</p>
 </div>
 <div class="section" id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
-<p>TODO</p>
+<p>### On Linux
+You can build Lightpile from source with the following major dependencies
+- Python 2.7
+- numpy, matplotlib, scipy</p>
+<p>For a full list see requirements.txt.</p>
+<p>Build and install Lightpile with</p>
+<p><cite>pip install git+git://github.com/ri-p/lightpile</cite></p>
+<p>#### Install Lightpile into a virtual environment
+It is recommended to install Lightpile into a virtual environment.
+The following steps have been tested with Ubuntu 14.04 64bit</p>
+<ol class="arabic simple">
+<li>Get a virtualenv with pip</li>
+</ol>
+<blockquote>
+<div><code class="docutils literal"><span class="pre">`</span>
+<span class="pre">$</span> <span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">python-pip</span>
+<span class="pre">$</span> <span class="pre">sudo</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">virtualenvwrapper</span>
+<span class="pre">`</span></code>
+Add the following lines to your ~/.bashrc (for details see</div></blockquote>
+<dl class="docutils">
+<dt>[here](<a class="reference external" href="https://virtualenvwrapper.readthedocks.org/en/laest/install.html">https://virtualenvwrapper.readthedocks.org/en/laest/install.html</a>) ):</dt>
+<dd><code class="docutils literal"><span class="pre">`</span>
+<span class="pre">export</span> <span class="pre">WORKON_HOME=$HOME/.virtualenvs</span>
+<span class="pre">source</span> <span class="pre">/usr/local/bin/virtualenvwrapper.sh</span>
+<span class="pre">`</span></code>
+and create your virtual environment
+<code class="docutils literal"><span class="pre">`</span>
+<span class="pre">$</span> <span class="pre">source</span> <span class="pre">~/.bashrc</span>
+<span class="pre">$</span> <span class="pre">mkvirtualenv</span> <span class="pre">env-lp</span>
+<span class="pre">`</span></code></dd>
+</dl>
+<ol class="arabic simple" start="2">
+<li>Install numpy, scipy, matplotlib</li>
+</ol>
+<blockquote>
+<div><code class="docutils literal"><span class="pre">`</span>
+<span class="pre">(env-lp)$</span> <span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">python-dev</span> <span class="pre">g++</span> <span class="pre">libpng-dev</span> <span class="pre">libfreetype6-dev</span> <span class="pre">libjpeg8-dev</span> <span class="pre">liblapack-dev</span> <span class="pre">gfortran</span>
+<span class="pre">(env-lp)$</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">numpy</span>
+<span class="pre">(env-lp)$</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">matplotlib</span>
+<span class="pre">(env-lp)$</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">scipy</span>
+<span class="pre">`</span></code></div></blockquote>
+<ol class="arabic simple" start="3">
+<li>Install Lightpile</li>
+</ol>
+<blockquote>
+<div><code class="docutils literal"><span class="pre">`</span>
+<span class="pre">(env-lp)$</span> <span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">git</span>
+<span class="pre">(env-lp)$</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">git+https://github.com/ri-p/lightpile</span>
+<span class="pre">`</span></code></div></blockquote>
+<p>### On Windows
+We plan to release binaries for Windows.</p>
 </div>
 <div class="section" id="minimal-example">
 <h2>Minimal Example<a class="headerlink" href="#minimal-example" title="Permalink to this headline">¶</a></h2>
-<p>TODO</p>
+<p>As an introduction we reproduce the situation shown in Fig. 10 of the paper of
+[Ford and Weber](<a class="reference external" href="http://deepblue.lib.umich.edu/bitstream/handle/2027.42/24649/0000062.pdf">http://deepblue.lib.umich.edu/bitstream/handle/2027.42/24649/0000062.pdf</a>)</p>
+<p>In your favourite text editor create a file with the follwing content and name
+it &#8216;ford_fig10.lps&#8217; (lightpile scene)
+<a href="#id1"><span class="problematic" id="id2">``</span></a>`
+[materials]
+# name          n       k
+air             1.      0.
+dielectric      1.4142  0
+ag              0.0767  4.366</p>
+<p>[emitters]
+# name          orientation     iqe
+red_emitter     vert            1.0</p>
+<p>[stack]
+air             0
+red_emitter
+air             0.2
+dielectric      800
+ag              0</p>
+<p>[dipolestudy]
+spectralpoint wavelength nm 633
+angularrange u None 0.1 1.6 adaptive
+<a href="#id3"><span class="problematic" id="id4">``</span></a><a href="#id5"><span class="problematic" id="id6">`</span></a></p>
+<p>Let&#8217;s start the calculation
+<a href="#id7"><span class="problematic" id="id8">``</span></a>`
+(env-lp)$ lightpile ford_fig10.lps</p>
+<p>Lightpile creates for output files
+* dipolestudy_graph_f.png
+* dipolestudy_graph_p.png
+* dipolestudy_data_f.txt
+* dipolestudy_data_p.txt</p>
+<p>For explanation concerning the physical meaning of p(u) and f(u) please read
+the detailed [Lightpile examples](<a class="reference external" href="https://ri-p.github.io/Lightpile/examles.html">https://ri-p.github.io/Lightpile/examles.html</a>).</p>
 </div>
 </div>
 
@@ -72,7 +156,7 @@ of (organic) light emitting devices, known as (O)LEDs, or quantum dots.</p>
       <div class="bottomnav" role="navigation" aria-label="bottom navigation">
       
         <p>
-        «&#160;&#160;<a href="index.html">Welcome</a>
+        «&#160;&#160;<a href="index.html">Get Lightpile</a>
         &#160;&#160;::&#160;&#160;
         <a class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
@@ -83,7 +167,7 @@ of (organic) light emitting devices, known as (O)LEDs, or quantum dots.</p>
 
     <div class="footer" role="contentinfo">
         &copy; Copyright 2015, Richard Pfeifer.
-      Last updated on Jul 13, 2015.
+      Last updated on Jul 23, 2015.
     </div>
   </body>
 </html>
