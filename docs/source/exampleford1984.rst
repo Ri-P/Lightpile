@@ -2,10 +2,13 @@
 Powerdensity of a Single Emitter in Front of Silver
 ===================================================
 
-In this example the angular distribution of the emitted power of a single monochromatic dipole emitter above a silver surface is calculated and compared to published data.
+.. contents::
+   :local:
 
 Overview
 --------
+
+In this example the angular distribution of the emitted power of a single monochromatic dipole emitter above a silver surface is calculated and compared to published data.
 
 Demonstrated tasks
 ++++++++++++++++++

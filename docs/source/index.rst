@@ -30,7 +30,7 @@ Contents:
 .. toctree::
    :maxdepth: 1
 
-   readme_link
+   intro
    examples
    changes_link
    license_link
