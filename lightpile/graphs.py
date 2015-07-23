@@ -34,7 +34,7 @@ class Graph_y_a(object):
                  y_vTM_array, spectralpoint, y_ang_filename,
                  xlim_left=None, xlim_right=None,
                  ylim_bottom=None, ylim_top=None,
-                 xscale="linear", yscale="linear",
+                 xscale="linear", yscale="log",
                  legendloc='best', lines="total",
                  externaldata=None):
 
