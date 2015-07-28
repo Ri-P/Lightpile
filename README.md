@@ -10,7 +10,7 @@ mechanics. You might be interested in using Lightpile if working in the field
 of (organic) light emitting devices, known as (O)LEDs, or quantum dots.
 
 At the moment Lightpile calculates the emission behaviour of a monochromatic
-dipole emitter of arbitrary orientation within a pile of thin films.
+dipole emitter of arbitrary orientation within a stack (pile) of thin films.
 
 It is written by Richard Pfeifer and licensed under the GNU AGPL license.
 
@@ -18,48 +18,63 @@ Installation
 ------------
 
 ### On Linux
-You can build Lightpile from source with the following major dependencies
+You can build Lightpile from source with the following major dependencies (for
+a full list see requirements.txt).
 - Python 2.7
-- numpy, matplotlib, scipy
+- numpy (1.9.2), matplotlib (1.4.3), scipy (0.15.1)
 
-For a full list see requirements.txt.
 
-Build and install Lightpile with
+#### Direct install with scipy available
 
-`pip install git+git://github.com/ri-p/lightpile`
+If you have a Python interpreter with scipy installed and want to install
+Lightpile into this environment it is as easy as
+
+```bash
+$ pip install git+https://github.com/ri-p/lightpile
+```
+I do recommend to follow the second way of using a virtual environment in
+order not to clutter your python installation with numerous packages.
 
 #### Install Lightpile into a virtual environment
-It is recommended to install Lightpile into a virtual environment.
-The following steps have been tested with Ubuntu 14.04 64bit
+
+It is recommended to install Lightpile into a virtual environment. Follow these
+steps, assuming you start with a blank installation of Ubuntu. They have been
+tested with Ubuntu 14.04 64bit.
 
 1. Get a virtualenv with pip
-  ```
-  $ sudo apt-get install python-pip
-  $ sudo pip install virtualenvwrapper
-  ```
-  Add the following lines to your ~/.bashrc (for details see
-[here](https://virtualenvwrapper.readthedocks.org/en/laest/install.html) ):
-  ```
-  export WORKON_HOME=$HOME/.virtualenvs
-  source /usr/local/bin/virtualenvwrapper.sh
-  ```
-  and create your virtual environment
-  ```
-  $ source ~/.bashrc
-  $ mkvirtualenv env-lp
-  ```
+
+    ```bash
+    $ sudo apt-get install python-pip
+    $ sudo pip install virtualenvwrapper
+    ```
+    Then add the following lines to your ~/.bashrc (for details see [here](https://virtualenvwrapper.readthedocks.org/en/laest/install.html))
+
+    ```bash
+    export WORKON_HOME=$HOME/.virtualenvs
+    source /usr/local/bin/virtualenvwrapper.sh
+    ```
+    and create your virtual environment
+
+    ```bash
+    $ source ~/.bashrc
+    $ mkvirtualenv env-lp
+    ```
+
 2. Install numpy, scipy, matplotlib
-  ```
-  (env-lp)$ sudo apt-get install python-dev g++ libpng-dev libfreetype6-dev libjpeg8-dev liblapack-dev gfortran
-  (env-lp)$ pip install numpy
-  (env-lp)$ pip install matplotlib
-  (env-lp)$ pip install scipy
-  ```
+
+    ```bash
+    (env-lp)$ sudo apt-get install python-dev g++ libpng-dev libfreetype6-dev libjpeg8-dev liblapack-dev gfortran
+    (env-lp)$ pip install numpy==1.9.2
+    (env-lp)$ pip install matplotlib==1.4.3
+    (env-lp)$ pip install scipy==0.15.1
+    ```
+
 3. Install Lightpile
-  ```
-  (env-lp)$ sudo apt-get install git
-  (env-lp)$ pip install git+https://github.com/ri-p/lightpile
-  ```
+
+    ```bash
+    (env-lp)$ sudo apt-get install git
+    (env-lp)$ pip install git+https://github.com/ri-p/lightpile
+    ```
 
 ### On Windows
 We plan to release binaries for Windows.
@@ -75,21 +90,21 @@ In your favourite text editor create a file with the follwing content and name
 it 'ford_fig10.lps' (lightpile scene)
 ```
 [materials]
-# name		n	k
-air		1. 	0.
-dielectric	1.4142	0
-ag		0.0767	4.366
+# name          n       k
+air             1.      0.
+dielectric      1.4142  0
+ag              0.0767  4.366
 
 [emitters]
-# name		orientation 	iqe
-red_emitter	vert		1.0
+# name          orientation     iqe
+red_emitter     vert            1.0
 
 [stack]
-air		0
+air             0
 red_emitter
-air		0.2
-dielectric	800
-ag		0
+air             0.2
+dielectric      800
+ag              0
 
 [dipolestudy]
 spectralpoint wavelength nm 633
@@ -99,6 +114,7 @@ angularrange u None 0.1 1.6 adaptive
 Let's start the calculation
 ```
 (env-lp)$ lightpile ford_fig10.lps
+```
 
 Lightpile creates for output files
 * dipolestudy_graph_f.png
@@ -106,5 +122,5 @@ Lightpile creates for output files
 * dipolestudy_data_f.txt
 * dipolestudy_data_p.txt
 
-For explanation concerning the physical meaning of p(u) and f(u) please read
-the detailed [Lightpile examples](https://ri-p.github.io/Lightpile/examles.html).
+For explanations concerning the physical meaning of p(u) and f(u) please read
+the detailed [Lightpile examples](https://ri-p.github.io/Lightpile/examples.html).
