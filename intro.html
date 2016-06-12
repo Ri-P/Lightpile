@@ -142,14 +142,31 @@ tested with Ubuntu 14.04 64bit.</p>
 </div>
 <div class="section" id="on-windows">
 <h3><a class="toc-backref" href="#id6">On Windows</a><a class="headerlink" href="#on-windows" title="Permalink to this headline">¶</a></h3>
-<p>We plan to release binaries for Windows.</p>
+<p>Lightpile depends on the numpy-package. Due to the difficulties of compiling numpy from source on Windows we suggest using a Python distribution with precompiled scientific packages, i.e. <a class="reference external" href="https://www.continuum.io/downloads">Anaconda</a> or <a class="reference external" href="https://www.enthought.com/products/canopy">Canopy</a>. The following instruction uses Anaconda.</p>
+<ol class="arabic simple">
+<li>Install Anaconda and prepare a new conda-environment &#8216;env-lp&#8217;</li>
+</ol>
+<blockquote>
+<div><p>Download <a class="reference external" href="https://www.continuum.io/downloads">Python 2.7 Anaconda for Windows</a> and install.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>conda create --name env-lp <span class="nv">python</span><span class="o">==</span>2.7 <span class="nv">numpy</span><span class="o">==</span>1.9.2 <span class="nv">scipy</span><span class="o">==</span>0.15.1 <span class="nv">matplotlib</span><span class="o">==</span>1.4.3
+</pre></div>
+</div>
+</div></blockquote>
+<ol class="arabic" start="2">
+<li><p class="first">Install Lightpile</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>activate env-lp
+<span class="o">(</span>env-lp<span class="o">)</span><span class="nv">$ </span>pip install https://github.com/ri-p/lightpile/archive/mster.zip
+</pre></div>
+</div>
+</li>
+</ol>
 </div>
 </div>
 <div class="section" id="minimal-example">
 <h2><a class="toc-backref" href="#id7">Minimal Example</a><a class="headerlink" href="#minimal-example" title="Permalink to this headline">¶</a></h2>
 <p>As an introduction we reproduce the situation shown in Fig. 10 of the paper of
 <a class="reference external" href="http://deepblue.lib.umich.edu/bitstream/handle/2027.42/24649/0000062.pdf">Ford and Weber</a></p>
-<p>In your favourite text editor create a file with the follwing content and name
+<p>In your favourite text editor create a file with the following content and name
 it &#8216;ford_fig10.lps&#8217; (lightpile scene):</p>
 <div class="highlight-python"><div class="highlight"><pre># Vertical dipole above dielectric layer on silver mirror.
 #
@@ -178,6 +195,10 @@ spectralpoint wavelength nm 633
 # 2) the intervall of directions or modes is: u = 0.1 ... 1.6 (no unit)
 #    with an automatic adaptive sampling point spacing
 angularrange u None 0.1 1.6 adaptive
+
+[graph_p_a]
+yscale log
+ylim 1e-3 1e3
 </pre></div>
 </div>
 <p>Let&#8217;s start the calculation</p>
@@ -191,8 +212,13 @@ angularrange u None 0.1 1.6 adaptive
 <li>dipolestudy_data_f.txt</li>
 <li>dipolestudy_data_p.txt</li>
 </ul>
+<p>Compare dipolestudy_graph_p.png with figure 10 of the paper.</p>
 <p>For explanation concerning the physical meaning of p(u) and f(u) please read
 the detailed <a class="reference external" href="https://ri-p.github.io/Lightpile/examples.html">Lightpile examples</a>.</p>
+<p>Once you are done with your calculations, leave the environment with</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="o">(</span>env-lp<span class="o">)</span><span class="nv">$ </span>deactivate
+</pre></div>
+</div>
 </div>
 </div>
 
@@ -212,7 +238,7 @@ the detailed <a class="reference external" href="https://ri-p.github.io/Lightpil
 
     <div class="footer" role="contentinfo">
         &copy; Copyright 2015, Richard Pfeifer.
-      Last updated on Jul 24, 2015.
+      Last updated on Jun 12, 2016.
     </div>
   </body>
 </html>
