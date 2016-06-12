@@ -94,7 +94,7 @@ On Windows
 
 Lightpile depends on the numpy-package. Due to the difficulties of compiling numpy from source on Windows we suggest using a Python distribution with precompiled scientific packages, i.e. `Anaconda`_ or `Canopy`_. The following instruction uses Anaconda.
 
-.. _Anaconda: https://www.contiuum.io/downloads
+.. _Anaconda: https://www.continuum.io/downloads
 .. _Canopy: https://www.enthought.com/products/canopy
 
 1. Install Anaconda and prepare a new conda-environment 'env-lp'
