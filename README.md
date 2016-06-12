@@ -77,7 +77,22 @@ tested with Ubuntu 14.04 64bit.
     ```
 
 ### On Windows
-We plan to release binaries for Windows.
+Lightpile depends on the numpy-package. Due to the difficulties of compiling numpy from source on Windows we suggest using a Python distribution with precompiled scientific packages, i.e. [Anaconda] (https://www.continuum.io/downloads) or [Canopy] (https://www.enthought.com/products/canopy). The following instruction uses Anaconda.
+
+1. Install Anaconda and prepare a new conda-environment 'env-lp'
+
+	Download [Python 2.7 Anaconda for Windows] (https://www.continuum.io/downloads) and install.
+
+	```bash
+	$ conda create --name env-lp python==2.7 numpy==1.9.2 scipy==0.15.1 matplotlib==1.4.3
+	```
+
+2. Install Lightpile
+
+	```bash
+	$ activate env-lp
+	(env-lp)$ pip install https://github.com/ri-p/lightpile/archive/master.zip
+	```
 
 
 Minimal Example
@@ -86,7 +101,7 @@ Minimal Example
 As an introduction we reproduce the situation shown in Fig. 10 of the paper of
 [Ford and Weber](http://deepblue.lib.umich.edu/bitstream/handle/2027.42/24649/0000062.pdf)
 
-In your favourite text editor create a file with the follwing content and name
+In your favourite text editor create a file with the following content and name
 it 'ford_fig10.lps' (lightpile scene)
 ```
 [materials]
@@ -109,6 +124,10 @@ ag              0
 [dipolestudy]
 spectralpoint wavelength nm 633
 angularrange u None 0.1 1.6 adaptive
+
+[graph_p_a]
+yscale log
+ylim 1e-3 1e3
 ```
 
 Let's start the calculation
@@ -122,5 +141,12 @@ Lightpile creates for output files
 * dipolestudy_data_f.txt
 * dipolestudy_data_p.txt
 
+Compare dipolestudy_graph_p.png with figure 10 of the paper.
+
 For explanations concerning the physical meaning of p(u) and f(u) please read
 the detailed [Lightpile examples](https://ri-p.github.io/Lightpile/examples.html).
+
+Once you are done with your calculations, leave the environment with
+```
+(env-lp)$ deactivate
+```
