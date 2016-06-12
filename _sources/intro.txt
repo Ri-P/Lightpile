@@ -112,7 +112,7 @@ Lightpile depends on the numpy-package. Due to the difficulties of compiling num
    .. code-block:: bash
 
       $ activate env-lp
-      (env-lp)$ pip install https://github.com/ri-p/lightpile/archive/mster.zip
+      (env-lp)$ pip install https://github.com/ri-p/lightpile/archive/master.zip
 
 
 
